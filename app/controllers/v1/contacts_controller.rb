@@ -1,15 +1,18 @@
 class V1::ContactsController < ApplicationController
   def index
      @contacts = Contact.all
-
-     render json: @contacts, status: :ok
+     # byebug
+     #jbuilder alows us to render a json view which will help with scability
+     #instead of :
+     # render json: @contacts, status: :ok
+     render :index, status: :ok
    end
 
    def create
      @contact = Contact.new(contact_params)
 
      @contact.save
-     render json: @contact, status: :created
+     render :create, status: :created
    end
 
    def destroy
